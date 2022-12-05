@@ -11,3 +11,33 @@ Independente se você já fez o quiz dos filmes enquanto acompanhava a aula, bus
 
 É importante que a sua versão do quiz seja feita apenas com o conteúdo que vimos até aqui.
 */
+
+const form = document.querySelector('.quiz-form')
+const popup = document.querySelector('.popup-wrapper')
+
+const correctAnswer = ['A', 'B', 'B', 'A']
+
+form.addEventListener('submit', event => {
+	event.preventDefault()
+
+	const userAnswers = [
+		form.inputQuestion1.value,
+		form.inputQuestion2.value,
+		form.inputQuestion3.value,
+		form.inputQuestion4.value
+	]
+
+	let score = 0
+	userAnswers.forEach((userAnswer, index) => {
+		if (userAnswer === correctAnswer[index]) {
+			score += 25
+		}
+	})
+
+	popup.style.display = 'block'
+	console.log(score)
+})
+
+popup.addEventListener('click', event => {
+	console.log(event.target.classList[0])
+})
