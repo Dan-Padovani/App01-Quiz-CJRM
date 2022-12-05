@@ -3,3 +3,34 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+
+.popup-wrapper {
+	display: none;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, .5);
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.popup {
+	width: 100vw;
+	max-width: 340px;
+	margin: 15vh auto;
+	padding: 20px;
+	background: #fff;
+	position: relative;
+}
+
+.popup-close {
+	cursor: pointer;
+	top: 8px;
+	right: 20px;
+	position: absolute;
+	font-weight: bold;
+}
+
+.popup-content {
+	text-align: center;
+}
