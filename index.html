@@ -10,12 +10,100 @@
 	<title>Quiz | Final Fantasy 7</title>
 </head>
 <body>
-	<header>
-		<div class="container">
-			<h1>Quiz | Final Fantasy 7</h1>
+	<header class="bg-info font-white">
+		<div class="container text-center py-5">
+			<h1 class="text-white">Quiz | Final Fantasy 7</h1>
 		</div>
 	</header>
 
-	
+	<div class="quiz">
+		<div class="container">
+			<h2 class="my-4">Vamos testar se você conhece certas curiosidades do game Final Fantasy 7?</h2>
+			
+			<form class="quiz-form">
+				<div class="my-3">
+					<p>1. Qual o nome do bar administrado pela personagem Tifa?</p>
+					<div class="form-check py-1">
+						<input type="radio" name="inputQUestion1" value="A" />
+						<label class="form-check-label">
+							Seventh Heaven
+						</label>
+					</div>
+					<div class="form-check py-1">
+						<input type="radio" name="inputQUestion1" value="B" />
+						<label class="form-check-label">
+							Boate Azul
+						</label>
+					</div>
+				</div>
+
+				<div class="my-3">
+					<p>2. Que tipo de item a personagem Aerith (ou Eris se preferir), estava vendendo ao conhecer o Cloud?</p>
+					<div class="form-check py-1">
+						<input type="radio" name="inputQUestion2" value="A" />
+						<label class="form-check-label">
+							Roupas
+						</label>
+					</div>
+					<div class="form-check py-1">
+						<input type="radio" name="inputQUestion2" value="B" />
+						<label class="form-check-label">
+							Flores
+						</label>
+					</div>
+				</div>
+
+				<div class="my-3">
+					<p>3. Qual o nome da espada que Cloud herda do Soldier First Class Zack?</p>
+					<div class="form-check py-1">
+						<input type="radio" name="inputQUestion3" value="A" />
+						<label class="form-check-label">
+							Grayskull
+						</label>
+					</div>
+					<div class="form-check py-1">
+						<input type="radio" name="inputQUestion3" value="B" />
+						<label class="form-check-label">
+							Buster Sword
+						</label>
+					</div>
+				</div>
+
+				<div class="my-3">
+					<p>4. Quem é o guerreiro lendário e também vilão da trama de FF7?</p>
+					<div class="form-check py-1">
+						<input type="radio" name="inputQUestion4" value="A" />
+						<label class="form-check-label">
+							Sephiroth
+						</label>
+					</div>
+					<div class="form-check py-1">
+						<input type="radio" name="inputQUestion4" value="B" />
+						<label class="form-check-label">
+							Madara
+						</label>
+					</div>
+				</div>
+
+				<div class="text-center">
+					<button class="btn btn-outline-info">
+						Enviar
+					</button>
+				</div>
+
+			</form>
+			<div class="popup-wrapper">
+				<div class="popup">
+					<div class="popup-close">x</div>
+					<div class="popup-content">
+						<h2>Parabéns</h2>
+						<h4>Você marcou <span>100</span> pontos!</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="app.js"></script>
 </body>
 </html>
