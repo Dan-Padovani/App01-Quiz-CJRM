@@ -42,7 +42,7 @@ const showFinalPointsInformation = () => {
 	showPopupInfo('Poxa, não foi dessa vez =(', 'Tente Novamente')
 }
 
-form.addEventListener('submit', event => {
+const handleQuiz = event => {
 	event.preventDefault()
 
 	const userAnswers = [
@@ -64,7 +64,9 @@ form.addEventListener('submit', event => {
 	score = 0
 	userAnswers.forEach(calculatePoints)
 	showFinalPointsInformation()
-})
+}
+
+form.addEventListener('submit', handleQuiz)
 
 popup.addEventListener('click', event => {
 	const classNameClickedElement = event.target.classList[0]
