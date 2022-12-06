@@ -17,8 +17,30 @@ const popup = document.querySelector('.popup-wrapper')
 const h3Score = document.querySelector('.popup-content h3')
 const popupButton = document.querySelector('.retry-button')
 
-
 const correctAnswer = ['A', 'B', 'B', 'A']
+let score = 0
+
+const showPopupInfo = (message, textButton) => {
+	popup.style.display = 'block'
+	h3Score.textContent = message
+	popupButton.textContent = textButton
+}
+
+const calculatePoints = (userAnswer, index) => {
+	const isACorrectAnswer = userAnswer === correctAnswer[index]
+
+	if (isACorrectAnswer) {
+		score += 25
+	}
+}
+
+const showFinalPointsInformation = () => {
+	if (score > 0) {
+		showPopupInfo(`Legal, Você marcou ${score} pontos! =)`, 'Tente Novamente')
+		return
+	}
+	showPopupInfo('Poxa, não foi dessa vez =(', 'Tente Novamente')
+}
 
 form.addEventListener('submit', event => {
 	event.preventDefault()
@@ -31,30 +53,17 @@ form.addEventListener('submit', event => {
 	]
 
 	for (let i = 0; i < userAnswers.length; i++) {
-		if (userAnswers[i] === '') {
-			popup.style.display = 'block'
-			h3Score.textContent = `Por favor responda todas perguntas ;)`
-			popupButton.textContent = 'Continuar'
+		const isAEmptyAnswer = userAnswers[i] === ''
+		
+		if (isAEmptyAnswer) {
+			showPopupInfo(`Por favor, responda todas perguntas ;)`, 'Continuar')
 			return
 		}
 	}
 
-	let score = 0
-	userAnswers.forEach((userAnswer, index) => {
-		if (userAnswer === correctAnswer[index]) {
-			score += 25
-		}
-	})
-	
-	if (score > 0) {
-		popup.style.display = 'block'
-		h3Score.textContent = `Você marcou ${score} pontos! =)`
-		popupButton.textContent = 'Tente Novamente'
-		return
-	}
-	popup.style.display = 'block'
-	h3Score.textContent = 'Poxa, não foi dessa vez =('
-	popupButton.textContent = 'Tente Novamente'
+	score = 0
+	userAnswers.forEach(calculatePoints)
+	showFinalPointsInformation()
 })
 
 popup.addEventListener('click', event => {
@@ -68,5 +77,3 @@ popup.addEventListener('click', event => {
 		popup.style.display = 'none'
 	}
 })
-
-
