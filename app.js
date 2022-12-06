@@ -14,6 +14,9 @@ Independente se você já fez o quiz dos filmes enquanto acompanhava a aula, bus
 
 const form = document.querySelector('.quiz-form')
 const popup = document.querySelector('.popup-wrapper')
+const h3Score = document.querySelector('.popup-content h3')
+const popupButton = document.querySelector('.retry-button')
+
 
 const correctAnswer = ['A', 'B', 'B', 'A']
 
@@ -27,17 +30,43 @@ form.addEventListener('submit', event => {
 		form.inputQuestion4.value
 	]
 
+	for (let i = 0; i < userAnswers.length; i++) {
+		if (userAnswers[i] === '') {
+			popup.style.display = 'block'
+			h3Score.textContent = `Por favor responda todas perguntas ;)`
+			popupButton.textContent = 'Continuar'
+			return
+		}
+	}
+
 	let score = 0
 	userAnswers.forEach((userAnswer, index) => {
 		if (userAnswer === correctAnswer[index]) {
 			score += 25
 		}
 	})
-
+	
+	if (score > 0) {
+		popup.style.display = 'block'
+		h3Score.textContent = `Você marcou ${score} pontos! =)`
+		popupButton.textContent = 'Tente Novamente'
+		return
+	}
 	popup.style.display = 'block'
-	console.log(score)
+	h3Score.textContent = 'Poxa, não foi dessa vez =('
+	popupButton.textContent = 'Tente Novamente'
 })
 
 popup.addEventListener('click', event => {
-	console.log(event.target.classList[0])
+	const classNameClickedElement = event.target.classList[0]
+	const classNameToClose = ['retry-button', 'popup-close']
+
+	const closePopup = classNameToClose.some(classname => 
+		classname === classNameClickedElement)
+
+	if (closePopup) {
+		popup.style.display = 'none'
+	}
 })
+
+
