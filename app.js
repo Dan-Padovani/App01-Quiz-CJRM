@@ -33,7 +33,9 @@ const calculatePoints = (userAnswer, index) => {
 }
 
 const showFinalPointsInformation = () => {
-	if (score > 0) {
+	const isThereAnyPoints = score > 0
+
+	if (isThereAnyPoints) {
 		showPopupInfo(`Legal, Você marcou ${score} pontos! =)`)
 		return
 	}
