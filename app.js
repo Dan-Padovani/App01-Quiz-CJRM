@@ -66,16 +66,17 @@ const handleQuiz = event => {
 	showFinalPointsInformation()
 }
 
-form.addEventListener('submit', handleQuiz)
-
-popup.addEventListener('click', event => {
+const closePopup = event => {
 	const classNameClickedElement = event.target.classList[0]
 	const classNameToClose = ['retry-button', 'popup-close']
 
-	const closePopup = classNameToClose.some(classname => 
+	const shouldClosePopup = classNameToClose.some(classname => 
 		classname === classNameClickedElement)
 
-	if (closePopup) {
+	if (shouldClosePopup) {
 		popup.style.display = 'none'
 	}
-})
+}
+
+form.addEventListener('submit', handleQuiz)
+popup.addEventListener('click', closePopup)
