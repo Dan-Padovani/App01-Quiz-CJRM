@@ -20,7 +20,13 @@ const popupButton = document.querySelector('.retry-button')
 const correctAnswer = ['A', 'B', 'B', 'A']
 let score = 0
 
-const showPopupInfo = (message, textButton) => {
+const emptyAnwserFeedback = {
+	message: 'Por favor, responda todas perguntas ;)',
+	textButton: 'Continuar'
+}
+
+const showPopupInfo = ({ message, textButton }) => {
+	//popupInfo = { message, textButton }
 	popup.style.display = 'block'
 	h3Score.textContent = message
 	popupButton.textContent = textButton
@@ -34,13 +40,13 @@ const calculatePoints = (userAnswer, index) => {
 	}
 }
 
-const showFinalPointsInformation = () => {
-	if (score > 0) {
-		showPopupInfo(`Legal, Você marcou ${score} pontos! =)`, 'Tente Novamente')
-		return
-	}
-	showPopupInfo('Poxa, não foi dessa vez =(', 'Tente Novamente')
-}
+// const showFinalPointsInformation = () => {
+// 	if (score > 0) {
+// 		showPopupInfo(`Legal, Você marcou ${score} pontos! =)`, 'Tente Novamente')
+// 		return
+// 	}
+// 	showPopupInfo('Poxa, não foi dessa vez =(', 'Tente Novamente')
+// }
 
 const handleQuiz = event => {
 	event.preventDefault()
@@ -52,18 +58,25 @@ const handleQuiz = event => {
 		form.inputQuestion4.value
 	]
 
-	for (let i = 0; i < userAnswers.length; i++) {
-		const isAEmptyAnswer = userAnswers[i] === ''
-		
-		if (isAEmptyAnswer) {
-			showPopupInfo(`Por favor, responda todas perguntas ;)`, 'Continuar')
-			return
-		}
+	const isAEmptyAnswer = userAnswers.some(userAnswer => userAnswer === '')
+
+	if (isAEmptyAnswer) {
+		showPopupInfo(emptyAnwserFeedback)
+		return
 	}
+
+	// for (let i = 0; i < userAnswers.length; i++) {
+	// 	const isAEmptyAnswer = userAnswers[i] === ''
+		
+	// 	if (isAEmptyAnswer) {
+	// 		showPopupInfo(`Por favor, responda todas perguntas ;)`, 'Continuar')
+	// 		return
+	// 	}
+	// }
 
 	score = 0
 	userAnswers.forEach(calculatePoints)
-	showFinalPointsInformation()
+	//showFinalPointsInformation()
 }
 
 const closePopup = event => {
