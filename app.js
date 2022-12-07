@@ -15,21 +15,13 @@ Independente se você já fez o quiz dos filmes enquanto acompanhava a aula, bus
 const form = document.querySelector('.quiz-form')
 const popup = document.querySelector('.popup-wrapper')
 const h3Score = document.querySelector('.popup-content h3')
-const popupButton = document.querySelector('.retry-button')
 
 const correctAnswer = ['A', 'B', 'B', 'A']
 let score = 0
 
-const emptyAnwserFeedback = {
-	message: 'Por favor, responda todas perguntas ;)',
-	textButton: 'Continuar'
-}
-
-const showPopupInfo = ({ message, textButton }) => {
-	//popupInfo = { message, textButton }
+const showPopupInfo = message => {
 	popup.style.display = 'block'
-	h3Score.textContent = message
-	popupButton.textContent = textButton
+	h3Score.textContent = message	
 }
 
 const calculatePoints = (userAnswer, index) => {
@@ -40,13 +32,13 @@ const calculatePoints = (userAnswer, index) => {
 	}
 }
 
-// const showFinalPointsInformation = () => {
-// 	if (score > 0) {
-// 		showPopupInfo(`Legal, Você marcou ${score} pontos! =)`, 'Tente Novamente')
-// 		return
-// 	}
-// 	showPopupInfo('Poxa, não foi dessa vez =(', 'Tente Novamente')
-// }
+const showFinalPointsInformation = () => {
+	if (score > 0) {
+		showPopupInfo(`Legal, Você marcou ${score} pontos! =)`)
+		return
+	}
+	showPopupInfo('Poxa, não foi dessa vez =(')
+}
 
 const handleQuiz = event => {
 	event.preventDefault()
@@ -61,22 +53,13 @@ const handleQuiz = event => {
 	const isAEmptyAnswer = userAnswers.some(userAnswer => userAnswer === '')
 
 	if (isAEmptyAnswer) {
-		showPopupInfo(emptyAnwserFeedback)
+		showPopupInfo(`Por favor, responda todas perguntas ;)`)
 		return
 	}
 
-	// for (let i = 0; i < userAnswers.length; i++) {
-	// 	const isAEmptyAnswer = userAnswers[i] === ''
-		
-	// 	if (isAEmptyAnswer) {
-	// 		showPopupInfo(`Por favor, responda todas perguntas ;)`, 'Continuar')
-	// 		return
-	// 	}
-	// }
-
 	score = 0
 	userAnswers.forEach(calculatePoints)
-	//showFinalPointsInformation()
+	showFinalPointsInformation()
 }
 
 const closePopup = event => {

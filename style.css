@@ -4,6 +4,14 @@
 	box-sizing: border-box;
 }
 
+.header-bg {
+	background: #0096CF;
+}
+
+body {
+	background: #CAF0F8;
+}
+
 .popup-wrapper {
 	display: none;
 	width: 100vw;
